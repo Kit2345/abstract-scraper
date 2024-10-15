@@ -10,6 +10,7 @@ MVP
 - Extract URLs from an Excel file into Python.
 - Configure a web scraping programme that can go to the URL and scrape the text from the abstract of an article.
 - Return whether the articles contain that keyword.
+
 EXTENSION
 - Return a dataset that shows the presence or absence of keywords for many articles.
 - Export the analysis to a new Excel file.
