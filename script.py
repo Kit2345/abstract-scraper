@@ -92,3 +92,11 @@ for url in urls:
 
 # print(f"all abstracts: {allAbstracts}")
 print(f"all data: {allData}")
+
+
+ 
+# Create the pandas DataFrame 
+df = pd.DataFrame(allData, columns = ["url", "mitigate", "climate anxiety", "climate change", "mental health", "global warming", "Abstract Text"]) 
+ 
+# print dataframe. 
+print(df)
