@@ -8,14 +8,21 @@ print("Hi")
 # url = "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8499625/"
 # url = "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9971900/"
 
-urls = ["https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10585315/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8499625/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7524012/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9971900/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10558031/"]
+# urls = ["https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10585315/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8499625/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7524012/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9971900/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10558031/"]
 
+# keywords = ["mitigate", "climate anxiety", "climate change", "mental health", "global warming"]
+
+df = pd.read_csv('input.csv')
+
+column_names = df.columns
+keywords = column_names[1::]
+urls = df["url"].to_list()
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 }
 
-keywords = ["mitigate", "climate anxiety", "climate change", "mental health", "global warming"]
+
 allData = []
 
 for url in urls:
