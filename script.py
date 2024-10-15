@@ -17,22 +17,29 @@ try:
     # Print all <div> elements (for debugging)
     all_divs = soup.findAll("div")
     for div in all_divs:
-        # CHECK CLASSES
-        if 'class' in div.attrs:
-            class_given = div.attrs['class']
-            # print("class:", class_given)
             
         # CHECK IDs
         if 'id' in div.attrs:
             id_given = div.attrs['id']
-            # print("id:", id_given)
+
             # CHECK for class abstract-a.c.b.q
             if id_given == "abstract-a.c.b.q":
                 print ("yes", id_given)
                 print("div: ", div)
                 abstract = (div.getText().replace("Abstract", "").strip())
                 print("abstract: ", abstract)
-                
+
+
+        # Print all <div> elements (for debugging)
+        # CHECK CLASSES
+        if 'class' in div.attrs:
+            class_given = div.attrs['class']
+            # print("class:", class_given)
+
+        # CHECK IDs
+        if 'id' in div.attrs:
+            id_given = div.attrs['id']
+            # print("id:", id_given)
         
         
 except requests.exceptions.HTTPError as http_err:
