@@ -19,7 +19,7 @@ keywords = "mitigation"
 
 
 
-for index, url in enumerate(urls):
+for url in urls:
     try:
         # Send the request
         page_to_scrape = requests.get(url, headers=headers, timeout=5)
@@ -30,17 +30,24 @@ for index, url in enumerate(urls):
 
         all_tags = soup.findAll(['h2', 'p'])
         
-        for tag in all_tags: 
-            # print(f"index: {index}")
-            # print("tag:", tag)
-            # print("attr:", tag.attrs)
+        for index, tag in enumerate(all_tags): 
+            print(f"index: {index}")
+            print("tag:", tag)
+            print("attr:", tag.attrs)
+
 
             if "Abstract" in tag.getText():
                 # print("Abstract", tag) 
-                abstractP = index+1
-                allAbstracts.append(all_tags[abstractP].getText())
-                print(all_tags[abstractP].getText())
+                abstractIndex = index+1
+                allAbstracts.append(all_tags[abstractIndex].getText())
+                print(all_tags[abstractIndex].getText())
 
+            
+            if "Summary" in tag.getText() and "Conclusion" not in tag.getText():
+                # print("Summary", tag) 
+                abstractIndex = index+1
+                allAbstracts.append(all_tags[abstractIndex].getText())
+                print(all_tags[abstractIndex].getText())
 
 
         #     # Print all <div> elements (for debugging)
