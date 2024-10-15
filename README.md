@@ -1,4 +1,4 @@
-# abstract-scraper
+# academic-abstract-scraper
 # Background
 Research papers often involve repetitive tasks. Automation can help reduce time spent on menial tasks.
 When conducting a **[Systematic Review](https://library-guides.ucl.ac.uk/systematic-reviews/what)** of literature, you may need to categorise a great number of papers.
