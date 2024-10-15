@@ -15,7 +15,6 @@ headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 }
 
-allAbstracts = []
 keywords = ["mitigate", "climate anxiety", "climate change", "mental health", "global warming"]
 allData = []
 
@@ -88,16 +87,10 @@ for url in urls:
         print(f"Error occurred: {req_err}")
 
 
-
-# print(f"all abstracts: {allAbstracts}")
-print(f"all data: {allData}")
-
-
+# print(f"all data: {allData}")
  
 # Create the pandas DataFrame 
 df = pd.DataFrame(allData, columns = ["url", "mitigate", "climate anxiety", "climate change", "mental health", "global warming", "Abstract Text"]) 
- 
-# print dataframe. 
-print(df)
 
+# Dataframe to CSV
 df.to_csv('abstracts.csv', index=False)
