@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 # Print a greeting message
 print("Hi")
 # Send a GET request to Google
-url = "https://www.google.com"
+url = "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8499625/"
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 }
