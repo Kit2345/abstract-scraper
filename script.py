@@ -17,8 +17,6 @@ allAbstracts = []
 keywords = "mitigation"
 
 
-
-
 for url in urls:
     try:
         # Send the request
@@ -27,28 +25,27 @@ for url in urls:
         page_to_scrape.raise_for_status()  # Raises an HTTPError for bad responses (4xx, 5xx)
         # Parse the content of the page
         soup = BeautifulSoup(page_to_scrape.content, 'html.parser')
+                
+        h2_tags = soup.find_all("h2")
 
-        all_tags = soup.findAll(['h2', 'p'])
-        
-        for index, tag in enumerate(all_tags): 
-            print(f"index: {index}")
-            print("tag:", tag)
-            print("attr:", tag.attrs)
+        for tag in h2_tags: 
+            if tag.get_text(strip=True) == "Abstract" or tag.get_text(strip=True) == "Summary":
+                print("Yes - Abstract or Summary found")
+                parent_div = tag.find_parent("div")
+                text = ""
 
+                if parent_div:
+                    paragraphs = parent_div.find_all("p")
 
-            if "Abstract" in tag.getText():
-                # print("Abstract", tag) 
-                abstractIndex = index+1
-                allAbstracts.append(all_tags[abstractIndex].getText())
-                print(all_tags[abstractIndex].getText())
-
+                    for paragraph in paragraphs: 
+                        text = text + " " + paragraph.getText(strip=True)
+                    allAbstracts.append(text)
+                
+                else:
+                    print("doesnt contain parent div")
             
-            if "Summary" in tag.getText() and "Conclusion" not in tag.getText():
-                # print("Summary", tag) 
-                abstractIndex = index+1
-                allAbstracts.append(all_tags[abstractIndex].getText())
-                print(all_tags[abstractIndex].getText())
-
+            else:
+                print(f"doesnt contain Abstract or Summary")
 
         #     # Print all <div> elements (for debugging)
         #     # CHECK CLASSES
