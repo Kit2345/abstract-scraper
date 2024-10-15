@@ -1,5 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
+
+import pandas as pd  
+
 # Print a greeting message
 print("Hi")
 # Send a GET request to ResearchGate
@@ -14,8 +17,8 @@ headers = {
 }
 
 allAbstracts = []
-keywords = "mitigation"
-
+keywords = ["mitigate", "climate anxiety", "climate change", "mental health", "global warming"]
+allData = []
 
 for url in urls:
     try:
@@ -27,10 +30,12 @@ for url in urls:
         soup = BeautifulSoup(page_to_scrape.content, 'html.parser')
                 
         h2_tags = soup.find_all("h2")
+        abstract = ""
+        currentData = [url]
 
         for tag in h2_tags: 
             if tag.get_text(strip=True) == "Abstract" or tag.get_text(strip=True) == "Summary":
-                print("Yes - Abstract or Summary found")
+                # print("Yes - Abstract or Summary found")
                 parent_div = tag.find_parent("div")
                 text = ""
 
@@ -38,14 +43,28 @@ for url in urls:
                     paragraphs = parent_div.find_all("p")
 
                     for paragraph in paragraphs: 
-                        text = text + " " + paragraph.getText(strip=True)
-                    allAbstracts.append(text)
+                        text += " " + paragraph.getText(strip=True)
+                    abstract += " " + text
                 
-                else:
-                    print("doesnt contain parent div")
+            #     else:
+            #         print("doesnt contain parent div")
             
-            else:
-                print(f"doesnt contain Abstract or Summary")
+            # else:
+            #     print(f"doesnt contain Abstract or Summary")
+        
+        for keyword in keywords: 
+
+            if keyword.lower() in abstract.lower():
+                # print(f"{keyword} is in abstract")
+                currentData.append("yes")
+
+            else: 
+                # print(f"{keyword} is not in abstract")
+                currentData.append("no")
+
+        currentData.append(abstract)
+        allData.append(currentData)
+        # print(f"currentData: {currentData}")
 
         #     # Print all <div> elements (for debugging)
         #     # CHECK CLASSES
@@ -71,8 +90,5 @@ for url in urls:
 
 
 
-print(f"all abstracts: {allAbstracts}")
-
-# for abstract in allAbstracts:
-#     if keywords in abstract:
-#         print(f"{keywords} is in {abstract}")
+# print(f"all abstracts: {allAbstracts}")
+print(f"all data: {allData}")
