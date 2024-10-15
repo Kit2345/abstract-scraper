@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-
 import pandas as pd  
 
 # Print a greeting message
@@ -101,4 +100,4 @@ df = pd.DataFrame(allData, columns = ["url", "mitigate", "climate anxiety", "cli
 # print dataframe. 
 print(df)
 
-df.to_csv('output.csv', index=False)
+df.to_csv('abstracts.csv', index=False)
