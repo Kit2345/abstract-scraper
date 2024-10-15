@@ -100,3 +100,5 @@ df = pd.DataFrame(allData, columns = ["url", "mitigate", "climate anxiety", "cli
  
 # print dataframe. 
 print(df)
+
+df.to_csv('output.csv', index=False)
